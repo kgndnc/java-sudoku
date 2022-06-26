@@ -4,31 +4,25 @@ public class Sudoku {
 
 	private static final int SIZE = 9;
 	
+	
 	private static void showBoard(int [][] table) {
-		
 		for (int i = 0; i < SIZE; i++) {
+			if(i != 0 && i % 3 == 0)
+				System.out.println("--------------------+");
 			for (int j = 0; j < SIZE; j++) {
-				String s = "";
-				s+= table[i][j] + "   ";
+				if(j != 0 && j % 3 == 0)
+					System.out.print("| ");
+				System.out.print(table[i][j] + " ");
 				
-				// System.out.print(table[i][j] + "\t");				
-				
-				if( (j+1) % 3 == 0) {
-					s = s.trim();
-					s+= " |\n";
-				}
-					//System.out.println("|\n");
-				
-				System.out.print(s);				
 			}
-			
-			System.out.println("----------+");
-			
+			System.out.println();			
 		}
+		
+		
 	}
 	
 	@SuppressWarnings("unused")
-	private static boolean isValidNumberRow(int[][] board, int table, int row, int column, int number) {
+	private static void isValidNumberRow(int[][] board, int table, int row, int column, int number) {
 		/*		tables
 		 *   [0]  [1]  [2]  -> if one of these check [0,1,2][row]
 		 *   [3]  [4]  [5]  -> if one of these check [3,4,5][row]
@@ -39,7 +33,7 @@ public class Sudoku {
 		
 	}
 	
-	private static boolean isFilledWithUniqVals(int[] grid) {		
+	private static void isFilledWithUniqVals(int[] grid) {		
 		// Check if all numbers are used only once (except 0)	
 		
 	}
@@ -72,9 +66,9 @@ public class Sudoku {
 		
 		// solveForOneBoard(board);
 		
-		 // showBoard(board);
+		 showBoard(board);
 		
-		isValidNumberRow(board, 2, 6, 1, 1);
+		//isValidNumberRow(board, 2, 6, 1, 1);
 		
 	}
 
