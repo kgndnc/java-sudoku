@@ -21,16 +21,43 @@ public class Sudoku {
 		
 	}
 	
-	@SuppressWarnings("unused")
-	private static void isValidNumberRow(int[][] board, int table, int row, int column, int number) {
-		/*		tables
-		 *   [0]  [1]  [2]  -> if one of these check [0,1,2][row]
-		 *   [3]  [4]  [5]  -> if one of these check [3,4,5][row]
-		 *   [6]  [7]  [8]  -> if one of these check [6,7,8][row]
-		 *      
-		 * */
+	// If the number to be inserted is valid returns true, otherwise false
+	private static boolean isValidNumberRow(int[][] board, int row, int number) {
+				
+		for (int i = 0; i < SIZE; i++) {
+			System.out.printf("I'm checking [%d][%d]\n", row, i);
+			if(board[row][i] != 0 && board[row][i] == number)
+				return false;			
+		}
+		return true;
+	}
+	
+	// If the number to be inserted is valid returns true, otherwise false
+	private static boolean isValidNumberColumn(int[][] board, int col, int number) {
 		
+		for (int i = 0; i < SIZE; i++) {
+			System.out.printf("I'm checking [%d][%d]\n", i, col);
+			if(board[i][col] != 0 && board[i][col] == number)
+				return false;			
+		}
+		return true;
+	}
+	
+	// If the number to be inserted is valid returns true, otherwise false
+	private static boolean isValidCurrentTable(int board[][], int row, int column, int number) {
 		
+		int startingRow = row - (row % 3);
+		int startingCol = column - (column % 3);
+		
+		for (int i = startingRow; i < startingRow + 3; i++) {
+			for (int j = startingCol; j < startingCol + 3; j++) {
+				System.out.printf("I'm checking [%d][%d]\n", i, j);
+				if(board[i][j] != 0 && board[i][j] == number)
+					return false;
+			}
+		}
+		
+		return true;
 	}
 	
 	private static void isFilledWithUniqVals(int[] grid) {		
@@ -66,10 +93,15 @@ public class Sudoku {
 		
 		// solveForOneBoard(board);
 		
-		 showBoard(board);
+		 // showBoard(board);
 		
-		//isValidNumberRow(board, 2, 6, 1, 1);
+		// boolean res = isValidNumberRow(board, 8, 2);
 		
+		// boolean res = isValidNumberColumn(board, 3, 6);
+		
+		boolean res = isValidCurrentTable(board, 1, 3, 8);
+		
+		System.out.println("Evaluation: " + res);
 	}
 
 }
